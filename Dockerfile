@@ -1,6 +1,6 @@
 FROM node:14-alpine3.14
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/smart-brain-api
 
 COPY ./ ./
 

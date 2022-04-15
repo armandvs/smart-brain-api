@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  smart-brain-api:
+    container_name: backend
+    # image: node:14-alpine3.14
+    build: ./
+    command: npm start
+    working_dir: /usr/src/smart-brain-api
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./:/usr/src/smart-brain-api
+  db:
+    container_name: db
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+      - POSTGRES_DB= postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
