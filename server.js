@@ -15,10 +15,10 @@ const db = knex({
   // connect to your own database here:
   client: 'pg',
   connection: {
-    host : 'localhost',
-    user : 'postgres',
-    password : '1234',
-    database : 'postgres'
+    host : process.env.POSTGRES_HOST,
+    user : process.env.POSTGRES_USER,
+    password : process.env.POSTGRES_PASSWORD,
+    database : process.env.POSTGRES_DB,
   }
 });
 
@@ -28,7 +28,7 @@ app.use(morgan('combined'));
 app.use(cors())
 app.use(express.json()); // latest version of exressJS now comes with Body-Parser!
 
-app.get('/', (req, res)=> { res.send(db.users) })
+app.get('/', (req, res)=> { res.send("Workinginsnnds!!!!!!") })
 app.post('/signin', signin.handleSignin(db, bcrypt))
 app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
 app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db)})
