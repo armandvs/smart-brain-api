@@ -14,9 +14,7 @@ services:
     volumes:
       - ./:/usr/src/smart-brain-api
     environment:
-      POSTGRES_URI: postgres://postgres:1234@postgres:5432/smart-brain-docker
-    links:
-      - postgres
+      POSTGRES_URI: postgresql://postgres:1234@postgres:5432/smart-brain-docker
 
   # Postgres
   postgres:
