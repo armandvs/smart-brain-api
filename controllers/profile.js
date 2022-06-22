@@ -18,8 +18,9 @@ const handleProfileUpdate = (req, res, db) => {
   db('users')
     .where({id})
     .update({name})
-    .then(res=> {
-      if(res){
+    .then(res => {
+      console.log('therespones',res)
+      if (res) {
         res.json('success')
       }
       else {
