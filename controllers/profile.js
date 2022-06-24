@@ -11,23 +11,17 @@ const handleProfileGet = (req, res, db) => {
     .catch(err => res.status(400).json('error getting user'))
 }
 
-const handleProfileUpdate = (req, res, db) => {
+const handleProfileUpdate = async (req, res, db) => {
   const {id} = req.params;
-  const {name, age, pet} = req.body.formInput;
+  const changes = req.body.formInput;
 
-  db('users')
-    .where({id})
-    .update({name})
-    .then(res => {
-      console.log('therespones',res)
-      if (res) {
-        res.json('success')
-      }
-      else {
-        res.status(400).json('Unable to update')
-      }
-    })
-    .catch(err => res.status(400).json('Error updating user'))
+  const count = await db('users').where({id}).update(changes);
+  if (count) {
+    res.json('success')
+  }
+  else {
+    res.status(400).json('Unable to update')
+  }
 }
 
 module.exports = {
